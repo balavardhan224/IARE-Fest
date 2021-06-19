@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:untitled/Events/con_events/User/TeamRegister_Event.dart';
 import 'package:untitled/Events/con_events/User/register_event.dart';
 import 'package:untitled/Events/con_events/User/upload.dart';
 
@@ -53,7 +54,7 @@ class _AeroState extends State<Aero> {
                   Navigator.push(
                     context,
                     new MaterialPageRoute(
-                      builder: (BuildContext context) => Register_Event(
+                      builder: (BuildContext context) => TeamRegister3_Event(
                         contest: "AeroModelling",
                       ),
                     ),

@@ -24,7 +24,7 @@ class Elocution_Admin extends StatelessWidget {
       floatingActionButton: null,
       body: StreamBuilder(
         stream: FirebaseFirestore.instance.collection("Elocution").snapshots(),
-      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData) {
             return Center(
               child: CircularProgressIndicator(),
@@ -164,17 +164,19 @@ class _AwesomeListItemState extends State<AwesomeListItem> {
                 ),
               ),
               new Container(
-                height: 150.0,
-                width: 150.0,
-                color: Colors.white,
+                height: 100.0,
+                width: 100.0,
+                color: Colors.white10,
                 child: Stack(
                   children: <Widget>[
                     new Transform.translate(
-                      offset: new Offset(50.0, 0.0),
+                      offset: new Offset(5.0, 0.0),
                       child: new Container(
                         height: 100.0,
                         width: 100.0,
-                        color: widget.color,
+                        child: Image(
+                          image: AssetImage('images/logo.png'),
+                        ),
                       ),
                     ),
                   ],

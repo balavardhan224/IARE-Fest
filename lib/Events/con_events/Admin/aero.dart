@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:untitled/Events/con_events/User/TeamRegisterPage.dart';
 import 'package:untitled/firestore/registerpage.dart';
 import 'package:untitled/firestore/youtube_player.dart';
 
@@ -46,6 +47,10 @@ class Aero_Admin extends StatelessWidget {
                 clg: document['college'],
                 branch: document['branch'],
                 phone: document['phone'],
+                t1r: document['team1r'],
+                t2r: document['team2r'],
+                t3r: document['team3r'],
+                t4r: document['team4r'],
                 color: Color(0xFFEF7A85),
               );
             }).toList(),
@@ -81,14 +86,22 @@ class AwesomeListItem extends StatefulWidget {
   var phone;
   var branch;
   var clg;
-
-  AwesomeListItem(
-      {required this.title,
-      required this.content,
-      required this.color,
-      required this.branch,
-      required this.phone,
-      required this.clg});
+  var t1r;
+  var t2r;
+  var t3r;
+  var t4r;
+  AwesomeListItem({
+    required this.title,
+    required this.content,
+    required this.color,
+    required this.branch,
+    required this.phone,
+    required this.clg,
+    required this.t1r,
+    required this.t2r,
+    required this.t3r,
+    required this.t4r,
+  });
 
   @override
   _AwesomeListItemState createState() => new _AwesomeListItemState();
@@ -105,12 +118,15 @@ class _AwesomeListItemState extends State<AwesomeListItem> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => RegisterPage(
+              builder: (context) => TeamRegister3Page(
                 name: widget.title,
                 rollno: widget.content,
                 college: widget.clg,
                 phone: widget.phone,
-                branch: widget.branch,
+                team1r: widget.t1r,
+                team2r: widget.t2r,
+                team3r: widget.t3r,
+                team4r: widget.t4r,
               ),
             ),
           );
@@ -159,17 +175,19 @@ class _AwesomeListItemState extends State<AwesomeListItem> {
                 ),
               ),
               new Container(
-                height: 150.0,
-                width: 150.0,
-                color: Colors.white,
+                height: 100.0,
+                width: 100.0,
+                color: Colors.white10,
                 child: Stack(
                   children: <Widget>[
                     new Transform.translate(
-                      offset: new Offset(50.0, 0.0),
+                      offset: new Offset(5.0, 0.0),
                       child: new Container(
                         height: 100.0,
                         width: 100.0,
-                        color: widget.color,
+                        child: Image(
+                          image: AssetImage('images/logo.png'),
+                        ),
                       ),
                     ),
                   ],

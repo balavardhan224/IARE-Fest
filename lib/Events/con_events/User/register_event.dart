@@ -13,6 +13,7 @@ class Register_Event extends StatefulWidget {
 
 // ignore: camel_case_types
 class _Register_EventViewState extends State<Register_Event> {
+  bool _rollnoc = true;
   Future<void> register(String rollno) async {
     CollectionReference users =
         FirebaseFirestore.instance.collection(widget.contest);
@@ -37,8 +38,18 @@ class _Register_EventViewState extends State<Register_Event> {
     return;
   }
 
+  @override
+  void initState() {
+    _rollnoc = true;
+    super.initState();
+  }
+
   final _formKey = GlobalKey<FormState>();
   TextEditingController _rollnoController = TextEditingController();
+  // TextEditingController _team1rollnoController = TextEditingController();
+  // TextEditingController _team2rollnoController = TextEditingController();
+  // TextEditingController _team1nameController = TextEditingController();
+  // TextEditingController _team2nameController = TextEditingController();
   // TextEditingController _topicController = TextEditingController();
   // TextEditingController _urlController = TextEditingController();
 
@@ -94,8 +105,97 @@ class _Register_EventViewState extends State<Register_Event> {
         hintStyle: TextStyle(
           color: Colors.black,
         ),
+        errorText: _rollnoc ? null : 'Value Can\'t Be Empty',
       ),
     );
+    // final team1rollnoField = TextFormField(
+    //   controller: _team1rollnoController,
+    //   style: TextStyle(
+    //     color: Colors.black,
+    //   ),
+    //   cursorColor: Colors.black,
+    //   decoration: InputDecoration(
+    //     focusedBorder: UnderlineInputBorder(
+    //       borderSide: BorderSide(
+    //         color: Colors.black,
+    //       ),
+    //     ),
+    //     hintText: "X951XXXXX",
+    //     labelText: "Please enter your teammate rollno",
+    //     labelStyle: TextStyle(
+    //       color: Colors.black,
+    //     ),
+    //     hintStyle: TextStyle(
+    //       color: Colors.black,
+    //     ),
+    //   ),
+    // );
+    // final team2rollnoField = TextFormField(
+    //   controller: _team2rollnoController,
+    //   style: TextStyle(
+    //     color: Colors.black,
+    //   ),
+    //   cursorColor: Colors.black,
+    //   decoration: InputDecoration(
+    //     focusedBorder: UnderlineInputBorder(
+    //       borderSide: BorderSide(
+    //         color: Colors.black,
+    //       ),
+    //     ),
+    //     hintText: "X951XXXXX",
+    //     labelText: "Please insert your roll number",
+    //     labelStyle: TextStyle(
+    //       color: Colors.black,
+    //     ),
+    //     hintStyle: TextStyle(
+    //       color: Colors.black,
+    //     ),
+    //   ),
+    // );
+    // final team1nameField = TextFormField(
+    //   controller: _team1nameController,
+    //   style: TextStyle(
+    //     color: Colors.black,
+    //   ),
+    //   cursorColor: Colors.black,
+    //   decoration: InputDecoration(
+    //     focusedBorder: UnderlineInputBorder(
+    //       borderSide: BorderSide(
+    //         color: Colors.black,
+    //       ),
+    //     ),
+    //     hintText: "Teammate name",
+    //     labelText: "Please enter your teammate name",
+    //     labelStyle: TextStyle(
+    //       color: Colors.black,
+    //     ),
+    //     hintStyle: TextStyle(
+    //       color: Colors.black,
+    //     ),
+    //   ),
+    // );
+    // final team2nameField = TextFormField(
+    //   controller: _team2nameController,
+    //   style: TextStyle(
+    //     color: Colors.black,
+    //   ),
+    //   cursorColor: Colors.black,
+    //   decoration: InputDecoration(
+    //     focusedBorder: UnderlineInputBorder(
+    //       borderSide: BorderSide(
+    //         color: Colors.black,
+    //       ),
+    //     ),
+    //     hintText: "X951XXXXX",
+    //     labelText: "Please insert your roll number",
+    //     labelStyle: TextStyle(
+    //       color: Colors.black,
+    //     ),
+    //     hintStyle: TextStyle(
+    //       color: Colors.black,
+    //     ),
+    //   ),
+    // );
     // final urlfield = TextFormField(
     //   controller: _urlController,
     //   style: TextStyle(
@@ -148,32 +248,41 @@ class _Register_EventViewState extends State<Register_Event> {
           ),
         ),
         onPressed: () {
-          register(_rollnoController.text);
-          FirebaseAuth auth = FirebaseAuth.instance;
-          String uid = auth.currentUser!.uid.toString();
-          FirebaseFirestore.instance
-              .collection(widget.contest)
-              .doc(uid)
-              .get()
-              .then((DocumentSnapshot documentSnapshot) {
-            if (documentSnapshot.exists) {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => RegisterPage(
-                    name: documentSnapshot['name'],
-                    rollno: documentSnapshot['rollno'],
-                    college: documentSnapshot['college'],
-                    phone: documentSnapshot['phone'],
-                    branch: documentSnapshot['branch'],
-                  ),
-                ),
-              );
-            } else {
-              Fluttertoast.showToast(
-                  msg: 'Please wait 10 seconds and Try Again');
-            }
+          setState(() {
+            _rollnoController.text.isEmpty ? _rollnoc = false : _rollnoc = true;
           });
+          if (_rollnoc) {
+            register(_rollnoController.text);
+            FirebaseAuth auth = FirebaseAuth.instance;
+            String uid = auth.currentUser!.uid.toString();
+            FirebaseFirestore.instance
+                .collection(widget.contest)
+                .doc(uid)
+                .get()
+                .then((DocumentSnapshot documentSnapshot) {
+              if (documentSnapshot.exists) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => RegisterPage(
+                      name: documentSnapshot['name'],
+                      rollno: documentSnapshot['rollno'],
+                      college: documentSnapshot['college'],
+                      phone: documentSnapshot['phone'],
+                      branch: documentSnapshot['branch'],
+                    ),
+                  ),
+                );
+              } else {
+                Fluttertoast.showToast(
+                    msg: 'Please wait 10 seconds and Try Again');
+              }
+            });
+          } else {
+            if (_rollnoc == false) {
+              Fluttertoast.showToast(msg: "Enter a valid Roll number");
+            }
+          }
         },
       ),
     );

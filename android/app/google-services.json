@@ -43,7 +43,7 @@
               "client_id": "625319021975-fsku0onj1n5e98jtrbn578afkaqr1lbe.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.iare.untitled"
+                "bundle_id": "com.iare.eventx"
               }
             }
           ]
@@ -54,7 +54,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:625319021975:android:41afedeaeeb914180f48d2",
         "android_client_info": {
-          "package_name": "com.iare.untitled"
+          "package_name": "com.iare.eventx"
         }
       },
       "oauth_client": [
@@ -79,7 +79,7 @@
               "client_id": "625319021975-fsku0onj1n5e98jtrbn578afkaqr1lbe.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.iare.untitled"
+                "bundle_id": "com.iare.eventx"
               }
             }
           ]

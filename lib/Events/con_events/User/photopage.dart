@@ -9,15 +9,19 @@ class PhotoPage extends StatefulWidget {
   final String url1;
   final String url2;
   final String college;
-  PhotoPage(
-      {Key? key,
-      required this.name,
-      required this.rollno,
-      required this.topic,
-      required this.url1,
-      required this.url2,
-      required this.college})
-      : super(key: key);
+  final String phone;
+  final String branch;
+  PhotoPage({
+    Key? key,
+    required this.name,
+    required this.rollno,
+    required this.topic,
+    required this.url1,
+    required this.url2,
+    required this.college,
+    required this.phone,
+    required this.branch,
+  }) : super(key: key);
   @override
   _PhotoPageState createState() => _PhotoPageState();
 }
@@ -31,6 +35,7 @@ class _PhotoPageState extends State<PhotoPage> {
     String url1 = widget.url1;
     String url2 = widget.url2;
     String college = widget.college;
+    String branch = widget.branch;
     return Scaffold(
       appBar: AppBar(
         title: Text('Photography'),
@@ -85,12 +90,13 @@ class _PhotoPageState extends State<PhotoPage> {
               height: 20,
             ),
             SizedBox(
-              width: 300,
-              height: 75,
+              width: 330,
+              height: 97,
               child: Card(
                 elevation: 12,
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12)),
+                  borderRadius: BorderRadius.circular(12),
+                ),
                 child: Stack(
                   children: <Widget>[
                     Align(
@@ -121,8 +127,8 @@ class _PhotoPageState extends State<PhotoPage> {
               ),
             ),
             SizedBox(
-              width: 300,
-              height: 75,
+              width: 330,
+              height: 97,
               child: Card(
                 elevation: 12,
                 shape: RoundedRectangleBorder(
@@ -157,8 +163,8 @@ class _PhotoPageState extends State<PhotoPage> {
               ),
             ),
             SizedBox(
-              width: 300,
-              height: 75,
+              width: 330,
+              height: 97,
               child: Card(
                 elevation: 12,
                 shape: RoundedRectangleBorder(
@@ -193,8 +199,8 @@ class _PhotoPageState extends State<PhotoPage> {
               ),
             ),
             SizedBox(
-              width: 300,
-              height: 75,
+              width: 330,
+              height: 97,
               child: Card(
                 elevation: 12,
                 shape: RoundedRectangleBorder(

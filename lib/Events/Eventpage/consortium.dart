@@ -129,7 +129,7 @@ class Consortium extends StatelessWidget {
                           style: TextStyle(color: colorwhite, fontSize: 16),
                         ),
                         Container(
-                          padding: EdgeInsets.all(20),
+                          padding: EdgeInsets.all(10),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(30),
@@ -151,7 +151,7 @@ class Consortium extends StatelessWidget {
                           data1[index]["event"],
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            fontSize: 24,
+                            fontSize: 22,
                             color: colorwhite,
                           ),
                         )),

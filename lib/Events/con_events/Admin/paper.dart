@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:untitled/firestore/registerpage.dart';
-import 'package:untitled/firestore/youtube_player.dart';
+import 'package:untitled/Events/con_events/User/TeamRegisterPage.dart';
 
 // ignore: camel_case_types
 class Paper_Admin extends StatelessWidget {
@@ -42,6 +41,8 @@ class Paper_Admin extends StatelessWidget {
               return new AwesomeListItem(
                 title: document['name'],
                 content: document['rollno'],
+                team1n: document['team1n'],
+                team1r: document['team1r'],
                 clg: document['college'],
                 branch: document['branch'],
                 phone: document['phone'],
@@ -77,12 +78,16 @@ class AwesomeListItem extends StatefulWidget {
   var title;
   var content;
   var color;
+  var team1n;
+  var team1r;
   var phone;
   var branch;
   var clg;
 
   AwesomeListItem(
       {required this.title,
+      required this.team1n,
+      required this.team1r,
       required this.content,
       required this.color,
       required this.branch,
@@ -104,12 +109,14 @@ class _AwesomeListItemState extends State<AwesomeListItem> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => RegisterPage(
+              builder: (context) => TeamRegisterPage(
                 name: widget.title,
                 rollno: widget.content,
+                team1n: widget.team1n,
+                team1r: widget.team1r,
                 college: widget.clg,
                 phone: widget.phone,
-                branch: widget.branch,
+                // branch: widget.branch,
               ),
             ),
           );
@@ -158,17 +165,19 @@ class _AwesomeListItemState extends State<AwesomeListItem> {
                 ),
               ),
               new Container(
-                height: 150.0,
-                width: 150.0,
-                color: Colors.white,
+                height: 100.0,
+                width: 100.0,
+                color: Colors.white10,
                 child: Stack(
                   children: <Widget>[
                     new Transform.translate(
-                      offset: new Offset(50.0, 0.0),
+                      offset: new Offset(5.0, 0.0),
                       child: new Container(
                         height: 100.0,
                         width: 100.0,
-                        color: widget.color,
+                        child: Image(
+                          image: AssetImage('images/logo.png'),
+                        ),
                       ),
                     ),
                   ],

@@ -106,6 +106,8 @@ class _AwesomeListItemState extends State<AwesomeListItem> {
                 url1: widget.subtitle,
                 url2: widget.url2,
                 college: widget.college,
+                phone: widget.phone,
+                branch: widget.branch,
               ),
             ),
           );
@@ -154,17 +156,19 @@ class _AwesomeListItemState extends State<AwesomeListItem> {
                 ),
               ),
               new Container(
-                height: 150.0,
-                width: 150.0,
-                color: Colors.white,
+                height: 100.0,
+                width: 100.0,
+                color: Colors.white10,
                 child: Stack(
                   children: <Widget>[
                     new Transform.translate(
-                      offset: new Offset(50.0, 0.0),
+                      offset: new Offset(5.0, 0.0),
                       child: new Container(
                         height: 100.0,
                         width: 100.0,
-                        color: widget.color,
+                        child: Image(
+                          image: AssetImage('images/logo.png'),
+                        ),
                       ),
                     ),
                   ],

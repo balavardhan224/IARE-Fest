@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Developers extends StatefulWidget {
   @override
@@ -74,6 +75,9 @@ class _TabViewState extends State<Developers>
   }
 }
 
+const _arv = 'https://armr.tech';
+const _shar = 'https://sharwansolanki.tech';
+
 class Developer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -91,7 +95,7 @@ class Developer extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(8.0))),
                 child: InkWell(
-                  onTap: () => print("ciao"),
+                  onTap: () => _launchURL("https://armr.tech/bala.html"),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch, // add this
                     children: <Widget>[
@@ -101,10 +105,11 @@ class Developer extends StatelessWidget {
                           topRight: Radius.circular(8.0),
                         ),
                         child: Image.network(
-                            'https://sharwansolanki.tech/images/bala.jpg',
-                            // width: 300,
-                            height: 300,
-                            fit: BoxFit.fill),
+                          'https://sharwansolanki.tech/images/bala.jpg',
+                          // width: 300,
+                          height: 300,
+                          fit: BoxFit.fitHeight,
+                        ),
                       ),
                       ListTile(
                         title: Text('Balavardhan Reddy Malyala'),
@@ -121,7 +126,7 @@ class Developer extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(8.0))),
                 child: InkWell(
-                  onTap: () => print("ciao"),
+                  onTap: () => _launchURL(_arv),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: <Widget>[
@@ -130,11 +135,10 @@ class Developer extends StatelessWidget {
                           topLeft: Radius.circular(8.0),
                           topRight: Radius.circular(8.0),
                         ),
-                        child: Image.network(
-                            'https://iare-data.s3.ap-south-1.amazonaws.com/uploads/cse/18951A0582.jpg',
+                        child: Image.network("https://armr.tech/images/aru.jpg",
                             // width: 300,
                             height: 300,
-                            fit: BoxFit.fill),
+                            fit: BoxFit.fitHeight),
                       ),
                       ListTile(
                         title: Text('Aravind Reddy Mokireddy'),
@@ -151,7 +155,7 @@ class Developer extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(8.0))),
                 child: InkWell(
-                  onTap: () => print("ciao"),
+                  onTap: () => _launchURL(_shar),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch, // add this
                     children: <Widget>[
@@ -161,10 +165,11 @@ class Developer extends StatelessWidget {
                           topRight: Radius.circular(8.0),
                         ),
                         child: Image.network(
-                            'https://sharwansolanki.tech/images/p1.jpg',
-                            // width: 300,
-                            height: 300,
-                            fit: BoxFit.fill),
+                          'https://sharwansolanki.tech/images/p2.gif',
+                          // width: 300,
+                          height: 300,
+                          fit: BoxFit.fitHeight,
+                        ),
                       ),
                       ListTile(
                         title: Text('Sharwan Solanki'),
@@ -181,7 +186,7 @@ class Developer extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(8.0))),
                 child: InkWell(
-                  onTap: () => print("ciao"),
+                  onTap: () => _launchURL("https://armr.tech/jayanth.html"),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: <Widget>[
@@ -191,10 +196,11 @@ class Developer extends StatelessWidget {
                           topRight: Radius.circular(8.0),
                         ),
                         child: Image.network(
-                            'https://sharwansolanki.tech/images/jayanth.jpg',
-                            // width: 300,
-                            height: 300,
-                            fit: BoxFit.fill),
+                          'https://sharwansolanki.tech/images/jayanth.gif',
+                          // width: 300,
+                          height: 300,
+                          fit: BoxFit.fitHeight,
+                        ),
                       ),
                       ListTile(
                         title: Text('Jayanth Naidu'),
@@ -288,4 +294,8 @@ class Mentors extends StatelessWidget {
       ),
     );
   }
+}
+
+void _launchURL(_url) async {
+  await canLaunch(_url) ? await launch(_url) : throw 'Could not launch $_url';
 }
